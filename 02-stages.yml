@@ -20,6 +20,12 @@ stages:
                versionSpec: '20.x'
            - script: npm install
            - script: npm run build
+  - stage: QA
+    dependsOn: Build
+    jobs:
+      - job: QAJob
+        steps:
+          - script: echo "QA"
   - stage: Test
     jobs:
       - job: Testing
