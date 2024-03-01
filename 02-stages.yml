@@ -12,7 +12,7 @@ pool:
 stages:
   - stage: Build
     jobs:
-      -  job: Building-Job
+      -  job: Building_Job
          steps:
            - task: NodeTool@0
              inputs:
@@ -22,12 +22,12 @@ stages:
            - script: npm run build
   - stage: Test
     jobs:
-      - job:
+      - job: Testing
         steps:
           - script: npm run test
   - stage: Deploy
     jobs:
-      - job: 
+      - job: Deploying
         steps:
           - script: npm run deploy
         
