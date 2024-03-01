@@ -26,6 +26,9 @@ stages:
         steps:
           - script: npm run test
   - stage: Deploy
+    dependsOn:
+      - Test
+      - Build
     jobs:
       - job: Deploying
         steps:
