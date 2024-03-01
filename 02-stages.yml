@@ -27,6 +27,7 @@ stages:
         steps:
           - script: echo "QA"
   - stage: Test
+    dependsOn: Build
     jobs:
       - job: Testing
         steps:
