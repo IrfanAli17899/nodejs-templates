@@ -17,15 +17,15 @@ pool:
 variables:
 - name: branch
   value: variables['Build.SourceBranch']
-# - name: environment
-#   ${{ if eq(branch, 'main') }}
-#     value: production
-#   ${{ elseif eq(branch, 'staging') }}
-#     value: staging
-#   ${{ elseif eq(branch, 'dev') }}
-#     value: dev
-#   ${{ else }}
-#     value: dev
+- name: environment
+  ${{ if eq(variables.branch, 'main') }}:
+    value: production
+  ${{ elseif eq(variables.branch, 'staging') }}:
+    value: staging
+  ${{ elseif eq(variables.branch, 'dev') }}:
+    value: dev
+  ${{ else }}:
+    value: dev
 stages:
   - stage: Build
     displayName: Building Stage
