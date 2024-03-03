@@ -1,0 +1,40 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+ branches:
+   include:
+     - '*'
+
+resources:
+- repo: self
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+- name: branch
+  value: variables['Build.SourceBranch']
+- name: environment
+  value: 
+    ${{ if eq(branch, 'main') }}: production
+    ${{ elseif eq(branch, 'staging') }}: staging
+    ${{ elseif eq(branch, 'dev') }}: dev
+    ${{ else }}: dev
+stages:
+  - stage: Build
+    displayName: Building Stage
+    jobs:
+      - job: 
+        steps:
+        - script: echo "Deploying branch '$(branch)' with environment '$(environment)'"
+        # - task: Docker@2      
+        #   inputs:
+        #     containerRegistry: 'irfanali17899-docker-hub'
+        #     repository: 'irfanali17899/node-template'
+        #     command: 'buildAndPush'
+        #     Dockerfile: '**/Dockerfile'
+        #     tags: ''
+         
