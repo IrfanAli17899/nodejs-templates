@@ -16,7 +16,7 @@ pool:
 
 variables:
 - name: branch
-  value: variables['Build.SourceBranch']
+  value: variables['Build.SourceBranchName']
 - name: environment
   ${{ if eq(variables.branch, 'main') }}:
     value: production
